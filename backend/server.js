@@ -1,12 +1,19 @@
 import express from "express";
 import products from "./data/products.js";
+
+// Iniciar o .env
 import dotenv from "dotenv";
 dotenv.config();
 
+// Iniciar a conexão com o MongoDB
+import connectDB from "./config/db.js";
+connectDB();
+
+// Iniciar o servidor de backend
 const app = express();
 const port = process.env.PORT || 5000;
 
-// routes
+// Iniciar as routes
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
@@ -20,7 +27,7 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-// listener
+// Iniciar o listener
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
